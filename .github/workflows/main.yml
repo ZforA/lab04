@@ -1,0 +1,43 @@
+name: CMake
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  hello_world_application:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: Building hello_world_application
+        shell: bash
+        working-directory: hello_world_application
+        run: |
+          cmake -B ./build
+          cd build
+          make
+          ./hello_world
+  sovler_application:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: Building solver_application
+        shell: bash
+        working-directory: solver_application
+        run: |
+          cmake -B ./build
+          cd build
+          make
+          ./equation
